@@ -12,9 +12,12 @@ You may view the Work and the live website for personal, non-commercial use.
 Viewing and forking this repository on GitHub is permitted only to the extent
 required by GitHub's Terms of Service.
 
-Third-party materials included in this repository, such as the font files in
-the assets/ folder, remain the property of their respective owners and are
-subject to their own licenses.
+Third-party materials included in this repository are excluded from this
+notice and remain the property of their respective owners. In particular, the
+Nimbus Sans font files in assets/fonts/nimbus-sans/ are Copyright 2014
+(URW)++ Design & Development and are licensed under the GNU Affero General
+Public License v3 with a font exception, as described in the LICENSE and
+COPYING files in that folder.
 
 THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED. IN NO EVENT SHALL THE COPYRIGHT OWNER BE LIABLE FOR ANY CLAIM,
