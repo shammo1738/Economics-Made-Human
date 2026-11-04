@@ -1,0 +1,161 @@
+window.ECON_LESSONS = [
+  {
+    id: 'scarcity', title: 'You can’t have it all. And that’s economics.', short: 'Scarcity & choice', category: 'Foundations', time: 5, art: 'choice', color: 'peach',
+    description: 'Why every yes comes with a little no.', hook: 'You have one free evening. Three good plans. Now what?',
+    idea: 'Economics begins with a simple problem: our time, money, and resources are limited, but there are many ways we would like to use them. That gap is called <strong>scarcity</strong>. Making a choice means making a trade-off.',
+    example: 'You have $20 for a relaxed afternoon. A second-hand book costs $12 and a café drink costs $4. You would like a book and three drinks, but that costs $24. Something has to give.',
+    steps: [['Name the limit', 'Your budget is $20. This is your constraint: the boundary of what you can afford.'], ['List the possibilities', 'You could buy one book and two drinks ($20), five drinks ($20), or the book alone and save $8.'], ['Choose what matters to you', 'There is no universally best choice. The useful question is which affordable combination you value most.']],
+    takeaway: 'Scarcity makes choices necessary. A trade-off is what you give up to get something else.',
+    pitfall: 'Scarcity does not mean poverty. Even someone with plenty of money has only 24 hours in a day.',
+    practice: {prompt: 'With $20, a $12 book, and drinks at $4 each, how many drinks can you buy after buying the book?', answer: 2, unit: 'drinks', explanation: 'First subtract the book: $20 − $12 = $8. Then divide by the price of a drink: $8 ÷ $4 = 2 drinks.'},
+    quiz: {question: 'Which is the clearest example of scarcity?', answers: ['A shop raises its prices.', 'You want to study and work a shift, but both use the same three hours.', 'A business earns a profit.'], correct: 1, explain: 'Your limited time cannot cover both activities. Scarcity exists even when no money changes hands.'}
+  },
+  {
+    id: 'opportunity-cost', title: 'The cost you don’t see on the receipt.', short: 'Opportunity cost', category: 'Foundations', time: 6, art: 'paths', color: 'green',
+    description: 'Meet the next-best thing you give up.', hook: 'A free movie ticket can still cost you something.',
+    idea: '<strong>Opportunity cost</strong> is the value of the next-best alternative you give up when you choose. It can involve money, time, rest, or an experience. It is not the total value of every other thing you could possibly do.',
+    example: 'You can spend a three-hour evening at a free film screening or work an available shift that pays $18 an hour. Suppose the shift is your next-best alternative.',
+    steps: [['Identify the actual alternatives', 'The choice is the film or the shift. You cannot do both during the same three hours.'], ['Value the next-best option', 'The shift pays 3 × $18 = $54 before tax. That is the foregone earnings component of going to the film.'], ['Make the trade-off explicit', 'The ticket is free, but attending means giving up the shift. You may still prefer the film. Understanding a cost is not the same as saying a choice is wrong.']],
+    takeaway: 'Ask: “If I don’t choose this, what would I actually do instead?”',
+    pitfall: 'Do not add up all the alternatives. If the next-best option is rest rather than work, foregone wages may not describe your real opportunity cost.',
+    practice: {prompt: 'If your next-best alternative is an available three-hour shift paying $18 an hour, how much pay do you give up by going to the film?', answer: 54, unit: 'dollars', explanation: '3 hours × $18 per hour = $54 in foregone gross earnings. The film can still be worth it to you.'},
+    quiz: {question: 'You choose a walk over your next-best option, a nap. What is the opportunity cost?', answers: ['The value of the nap you gave up.', 'Every activity you could have done.', 'Nothing, because walking is free.'], correct: 0, explain: 'The relevant cost is the value of your next-best alternative: the nap.'}
+  },
+  {
+    id: 'at-the-margin', title: 'Is one more worth it?', short: 'Thinking at the margin', category: 'Foundations', time: 6, art: 'steps', color: 'lavender',
+    description: 'Make better decisions, one extra step at a time.', hook: 'The first slice of pizza and the fifth are not the same decision.',
+    idea: 'To think <strong>at the margin</strong>, compare the extra benefit of a small change with its extra cost. “Marginal” simply means “additional.” Often, the right question is not whether to do something at all, but how much to do.',
+    example: 'Arcade games cost $6 each. You would be willing to pay $10 for your first game, $7 for a second, and $4 for a third. These amounts represent how much you value each extra game.',
+    steps: [['Compare the first extra unit', 'Game 1: benefit $10, cost $6. The extra benefit is greater than the extra cost.'], ['Repeat the comparison', 'Game 2: benefit $7, cost $6. This game is also worth buying under these assumptions.'], ['Know when to stop', 'Game 3: benefit $4, cost $6. Skip it. Two games give you the greatest net benefit among these choices.']],
+    takeaway: 'Take another step when its additional benefit exceeds its additional cost.',
+    pitfall: 'Money already spent and impossible to recover is a sunk cost. Do not let it decide whether the next step is worthwhile.',
+    practice: {prompt: 'Each game costs $6. Your values for games 1, 2, and 3 are $10, $7, and $4. How many games should you buy to maximize your net benefit?', answer: 2, unit: 'games', explanation: 'The first two games provide benefits above $6. The third provides only $4, so buying it would reduce your net benefit.'},
+    quiz: {question: 'You paid for a film but are no longer enjoying it. What should guide whether you stay?', answers: ['The ticket price you cannot get back.', 'How many people are staying.', 'The benefit of the remaining film versus the best use of your remaining time.'], correct: 2, explain: 'The ticket is a sunk cost. The decision now concerns the benefits and costs you can still change.'}
+  },
+  {
+    id: 'supply-demand', title: 'The two sides of every price.', short: 'Supply & demand', category: 'Markets', time: 6, art: 'curves', color: 'blue',
+    description: 'What buyers want. What sellers offer.', hook: 'Why do fewer people buy the same coffee when its price goes up?',
+    idea: '<strong>Demand</strong> describes how much buyers are willing and able to purchase at different prices. <strong>Supply</strong> describes how much sellers are willing and able to offer. Holding other things constant, a higher price usually reduces quantity demanded and increases quantity supplied.',
+    example: 'Imagine a small coffee market. At $3, buyers want 70 cups per hour. At $4, they want 60. Sellers, meanwhile, generally find it worthwhile to offer more cups when the price is higher.',
+    steps: [['Read the axes', 'A standard market diagram puts price on the vertical axis and quantity on the horizontal axis.'], ['Follow a curve', 'A change in the coffee’s own price moves you along the demand curve. At a higher price, some buyers switch to tea or make coffee at home.'], ['Separate a movement from a shift', 'If a new office opens nearby, buyers might want more coffee at every price. That shifts demand. It is different from a change in quantity demanded caused by price.']],
+    takeaway: 'Price changes move you along a curve. Changes in other conditions can shift the whole curve.',
+    pitfall: 'A high price alone does not mean demand increased. The price could have risen because supply fell.',
+    practice: {prompt: 'In a simple model, cups demanded = 100 − 10 × price. At a price of $4, how many cups are demanded?', answer: 60, unit: 'cups', explanation: '100 − (10 × 4) = 60 cups. At $5 the same curve gives 50 cups: a movement along demand.'},
+    quiz: {question: 'A popular new café review makes more people want its coffee at every price. What happens?', answers: ['Quantity demanded falls along the original curve.', 'The demand curve shifts to the right.', 'The supply curve must shift to the left.'], correct: 1, explain: 'A change in preferences increases demand at each price. That is a rightward demand shift.'}, lab: 'market'
+  },
+  {
+    id: 'equilibrium', title: 'Where buyers and sellers meet.', short: 'Market equilibrium', category: 'Markets', time: 7, art: 'balance', color: 'green',
+    description: 'Shortages, surpluses, and the balancing point.', hook: 'Too many customers. Not enough coffee. Something has to move.',
+    idea: '<strong>Equilibrium</strong> is the price and quantity at which quantity demanded equals quantity supplied. Below that price, a shortage can emerge. Above it, a surplus can emerge. In a competitive model, these imbalances create pressure for prices to adjust.',
+    example: 'Suppose demand is 100 − 10P cups and supply is 10P cups, where P is the price in dollars. We want a price at which buyers and sellers plan the same quantity.',
+    steps: [['Set the quantities equal', '100 − 10P = 10P. Both sides represent cups per hour.'], ['Solve one small equation', 'Add 10P to both sides: 100 = 20P. Divide by 20: P = $5.'], ['Find the matching quantity', 'At $5, demand is 100 − 50 = 50 cups and supply is 50 cups. At $3, demand is 70 and supply is 30, leaving a shortage of 40.']],
+    takeaway: 'Equilibrium means plans match. It does not automatically mean the outcome is fair or socially best.',
+    pitfall: 'Real markets may adjust slowly. Contracts, price rules, market power, and incomplete information can keep a market away from this simplified balancing point.',
+    practice: {prompt: 'Demand is 100 − 10P and supply is 10P. What price makes the two quantities equal?', answer: 5, unit: 'dollars', explanation: '100 − 10P = 10P → 100 = 20P → P = $5. Both quantities equal 50.'},
+    quiz: {question: 'If a price is above equilibrium in this model, what would you expect?', answers: ['A surplus: sellers offer more than buyers want.', 'A shortage: buyers want more than sellers offer.', 'No difference between supply and demand.'], correct: 0, explain: 'At a high price, quantity supplied exceeds quantity demanded. That gap is a surplus.'}, lab: 'market'
+  },
+  {
+    id: 'elasticity', title: 'How much does a price change matter?', short: 'Price elasticity', category: 'Markets', time: 7, art: 'stretch', color: 'peach',
+    description: 'Why some price rises change everything.', hook: 'A concert ticket and an everyday necessity do not always get the same reaction.',
+    idea: '<strong>Price elasticity of demand</strong> measures how responsive quantity demanded is to price. Using its absolute value, elasticity equals the percentage change in quantity divided by the percentage change in price. Above 1 is elastic; below 1 is inelastic.',
+    example: 'For a small price increase of about 10%, a seller expects quantity demanded to fall by about 20%, with other influences held constant.',
+    steps: [['Use percentages, not raw units', 'A $1 change means very different things for a $2 item and a $200 item. Percentages make the changes comparable.'], ['Divide the changes', 'The magnitude of elasticity is approximately 20% ÷ 10% = 2. Quantity responds proportionally more than price.'], ['Interpret the result', 'Demand is elastic here. Close substitutes, more time to adapt, and a larger budget share can make buyers more responsive.']],
+    takeaway: 'Elasticity describes the size of the response, not just its direction.',
+    pitfall: 'For larger changes between two points, use the midpoint method consistently. Elasticity is also different from the visual steepness of a curve.',
+    practice: {prompt: 'For a small change, price rises about 5% and quantity demanded falls about 15%. What is the approximate absolute price elasticity?', answer: 3, unit: '', explanation: '|−15% ÷ 5%| = 3. Demand is elastic because 3 is greater than 1.'},
+    quiz: {question: 'Demand has an absolute price elasticity of 0.4. It is…', answers: ['Elastic: quantity changes proportionally more.', 'Unit elastic: the changes are proportional.', 'Inelastic: quantity changes proportionally less.'], correct: 2, explain: 'An absolute elasticity below 1 means quantity is relatively unresponsive to a small price change.'}
+  },
+  {
+    id: 'externalities', title: 'When your choice reaches someone else.', short: 'Externalities', category: 'Markets', time: 6, art: 'ripple', color: 'lavender',
+    description: 'The costs and benefits outside the price tag.', hook: 'A noisy late-night delivery has a customer, a seller… and a sleepless neighbour.',
+    idea: 'An <strong>externality</strong> is a cost or benefit affecting someone outside a transaction that is not fully reflected in the price. Pollution can create negative externalities. Some learning and disease prevention can create positive ones.',
+    example: 'A fictional workshop spends $8 to make one item. Producing it also causes an estimated $3 of pollution damage to neighbours. The workshop does not pay those neighbours.',
+    steps: [['Find the private cost', 'The workshop considers its own $8 production cost. This affects its decision to supply the item.'], ['Include the outside effect', 'The additional external damage is $3. In this example, marginal social cost is $8 + $3 = $11.'], ['Think about incentives', 'If the price does not reflect the damage, the market can produce more than is socially efficient. Taxes, rules, or agreements may help, depending on the situation.']],
+    takeaway: 'A price can leave out real effects on other people.',
+    pitfall: 'Identifying an externality does not prove that one policy will work best. Measurement, enforcement, distribution, and unintended consequences matter.',
+    practice: {prompt: 'An additional item costs $8 to produce and causes $3 of external damage. What is its marginal social cost?', answer: 11, unit: 'dollars', explanation: 'Private marginal cost + marginal external cost = $8 + $3 = $11.'},
+    quiz: {question: 'Which is a negative externality?', answers: ['You pay for a sandwich you enjoy.', 'A factory pollutes a river used by people who are not part of its sales.', 'A seller pays more for ingredients.'], correct: 1, explain: 'The river users bear an uncompensated cost outside the transaction between the factory and its customers.'}
+  },
+  {
+    id: 'gdp', title: 'How do you measure an entire economy?', short: 'GDP & growth', category: 'The big picture', time: 7, art: 'city', color: 'blue',
+    description: 'What an economy produces—and what that misses.', hook: 'Imagine adding up a country’s new goods and services without counting the same thing twice.',
+    idea: '<strong>Gross domestic product (GDP)</strong> measures the market value of final goods and services produced within a country during a period. “Final” avoids double counting. “Domestic” refers to where production happens.',
+    example: 'A tiny fictional economy has consumption of $600, investment of $200, government purchases of $150, exports of $100, and imports of $80.',
+    steps: [['Add domestic spending categories', 'Consumption + investment + government purchases = $600 + $200 + $150 = $950. Investment here includes new productive assets, not buying existing shares.'], ['Adjust for international trade', 'Add exports and subtract imports: $950 + $100 − $80 = $970. Imports are subtracted to remove foreign production already included in spending.'], ['Separate prices from output', 'Nominal GDP uses current prices. Real GDP adjusts for price changes so we can better compare production over time.']],
+    takeaway: 'GDP tracks production. Real GDP helps separate output growth from rising prices.',
+    pitfall: 'GDP is not a complete score of well-being. It does not directly show inequality, unpaid work, environmental damage, or how people feel.',
+    practice: {prompt: 'C = 600, I = 200, G = 150, exports = 100, imports = 80. What is GDP using C + I + G + exports − imports?', answer: 970, unit: 'dollars', explanation: '600 + 200 + 150 + 100 − 80 = 970. All figures use the same units and period.'},
+    quiz: {question: 'Nominal GDP rises only because all prices rise. Output is unchanged. What happens to real GDP?', answers: ['It stays unchanged in this example.', 'It must rise by the same percentage.', 'It must fall to zero.'], correct: 0, explain: 'Real GDP removes the effect of price changes. If the quantities produced are unchanged, real output is unchanged.'}
+  },
+  {
+    id: 'inflation', title: 'Why the same money buys less.', short: 'Inflation', category: 'The big picture', time: 6, art: 'basket', color: 'peach',
+    description: 'Price levels, purchasing power, and your basket.', hook: 'Your usual basket used to cost $100. Now it costs $105.',
+    idea: '<strong>Inflation</strong> is an increase in the general price level over time. It reduces what a fixed amount of money can buy. It is about an overall basket of goods and services, not necessarily every individual price rising.',
+    example: 'A fixed basket costs $100 in year one and $105 in year two. Assume the basket and quality are unchanged so the comparison is meaningful.',
+    steps: [['Find the price increase', '$105 − $100 = $5 more for the same basket.'], ['Compare with the starting cost', '$5 ÷ $100 × 100 = 5% inflation in this simplified basket.'], ['Distinguish the rate from the level', 'If inflation is 2% the following year, the basket becomes $105 × 1.02 = $107.10. Inflation slowed, but prices still rose.']],
+    takeaway: 'Lower inflation usually means prices are rising more slowly—not that prices are falling.',
+    pitfall: 'Your personal spending mix can differ from an official consumer price index. If wages rise too, the effect on your purchasing power depends on both changes.',
+    practice: {prompt: 'The same basket rises from $100 to $105. What is its percentage price increase?', answer: 5, unit: '%', explanation: '($105 − $100) ÷ $100 × 100 = 5%.'},
+    quiz: {question: 'Inflation falls from 6% to 2%, with both rates positive. What does that mean?', answers: ['The general price level fell 4%.', 'Everything returned to its old price.', 'The general price level is still rising, but more slowly.'], correct: 2, explain: 'A lower positive inflation rate is disinflation. A falling general price level would be deflation.'}, lab: 'inflation'
+  },
+  {
+    id: 'interest-rates', title: 'The price of using money over time.', short: 'Interest rates', category: 'The big picture', time: 7, art: 'percent', color: 'green',
+    description: 'How borrowing costs ripple through the economy.', hook: 'Borrowing $1,000 now usually means paying back more than $1,000 later.',
+    idea: 'An <strong>interest rate</strong> expresses the cost of borrowing—or a return on lending or saving—relative to the amount of money, over a stated period. The rate you actually face depends on the product, risk, term, and other conditions.',
+    example: 'For a simple one-year loan of $1,000 at 5% annual interest, with no fees or payments during the year, interest is $50. The total repayment is $1,050.',
+    steps: [['Turn the percentage into a decimal', '5% = 0.05. The period matters: here it is one year.'], ['Calculate the interest', '$1,000 × 0.05 = $50. Add the principal to get $1,050 due after one year.'], ['Zoom out to the economy', 'Higher borrowing costs tend to discourage some spending and investment, which can reduce inflation pressure over time. Effects arrive with lags and depend on wider conditions.']],
+    takeaway: 'Interest connects today’s choices with tomorrow’s costs and rewards.',
+    pitfall: 'Actual loans may compound, include fees, or have ongoing payments. A central bank’s policy rate is not the same as every household’s borrowing rate.',
+    practice: {prompt: 'With simple interest, how much interest does a $1,000 loan accrue over one year at 5%, before fees?', answer: 50, unit: 'dollars', explanation: '$1,000 × 0.05 × 1 year = $50 of interest. Principal plus interest is $1,050.'},
+    quiz: {question: 'Other things equal, higher borrowing rates tend to…', answers: ['Make all loans cheaper immediately.', 'Discourage some borrowing and interest-sensitive spending.', 'Guarantee that every price falls tomorrow.'], correct: 1, explain: 'More expensive borrowing makes some purchases and investments less attractive. The effects are neither instant nor guaranteed for every price.'}
+  },
+  {
+    id: 'unemployment', title: 'Who counts as looking for work?', short: 'Unemployment', category: 'The big picture', time: 6, art: 'people', color: 'lavender',
+    description: 'The story behind a familiar headline number.', hook: 'Not everyone without a job is counted as unemployed.',
+    idea: 'In the standard introductory definition, an <strong>unemployed</strong> person has no job, is available for work, and is actively looking. The <strong>labour force</strong> includes employed and unemployed people. Exact official definitions include additional survey rules.',
+    example: 'A fictional town has 60 employed people, 5 people without jobs who are actively looking and available, and 35 people outside the labour force.',
+    steps: [['Find the labour force', 'Employed + unemployed = 60 + 5 = 65 people.'], ['Use the right denominator', 'Unemployment rate = unemployed ÷ labour force × 100. Here, 5 ÷ 65 × 100 ≈ 7.7%.'], ['Look beyond one number', 'A person who stops searching may leave the labour force. That can lower the rate without anyone finding a job. Participation and underemployment add useful context.']],
+    takeaway: 'The unemployment rate uses the labour force—not the entire population—as its denominator.',
+    pitfall: 'An employed person who wants more hours still counts as employed. A single headline rate cannot describe every form of difficulty finding enough work.',
+    practice: {prompt: 'There are 60 employed people and 5 unemployed people. What is the unemployment rate, rounded to one decimal place?', answer: 7.7, tolerance: 0.05, unit: '%', explanation: '5 ÷ (60 + 5) × 100 = 7.692…%, or about 7.7%.'},
+    quiz: {question: 'Someone has no job and is not currently seeking work. In the usual introductory definition, they are…', answers: ['Outside the labour force.', 'Automatically counted as unemployed.', 'Counted as employed.'], correct: 0, explain: 'Without active job search, they are usually outside the labour force. Official surveys have specific exceptions and availability rules.'}
+  },
+  {
+    id: 'trade', title: 'Why trade can make both sides better off.', short: 'Comparative advantage', category: 'The big picture', time: 8, art: 'exchange', color: 'blue',
+    description: 'Being the best at everything isn’t the point.', hook: 'Even a person who is faster at both tasks can benefit from sharing the work.',
+    idea: '<strong>Comparative advantage</strong> means producing something at a lower opportunity cost. It is different from absolute advantage, which means being more productive. Differences in opportunity costs can create gains from specialization and trade.',
+    example: 'In one hour, Alex can make 10 sandwiches or 5 coffees. Sam can make 4 sandwiches or 4 coffees. Assume each person trades off the two activities at a constant rate.',
+    steps: [['Calculate Alex’s trade-off', 'One sandwich costs Alex 5 ÷ 10 = 0.5 coffees. One coffee costs Alex 10 ÷ 5 = 2 sandwiches.'], ['Calculate Sam’s trade-off', 'One sandwich costs Sam 4 ÷ 4 = 1 coffee. One coffee costs Sam 4 ÷ 4 = 1 sandwich. Alex has comparative advantage in sandwiches; Sam in coffee.'], ['Find a mutually useful trade', 'At 1 coffee for 1.5 sandwiches, Alex gives up fewer sandwiches than making the coffee would cost. Sam receives more sandwiches than making them would yield in the same time.']],
+    takeaway: 'The important comparison is what each side gives up, not just who produces more.',
+    pitfall: 'Potential total gains do not mean every person automatically benefits. Adjustment costs, bargaining power, distribution, and environmental effects matter in real trade.',
+    practice: {prompt: 'Alex can make 10 sandwiches or 5 coffees in one hour. What is Alex’s opportunity cost of producing one coffee?', answer: 2, unit: 'sandwiches', explanation: '10 sandwiches ÷ 5 coffees = 2 sandwiches given up for each coffee.'},
+    quiz: {question: 'A person has comparative advantage in a task when they…', answers: ['Are absolutely faster at every task.', 'Can perform it without any cost.', 'Give up less of the other output to do it.'], correct: 2, explain: 'Comparative advantage is about lower opportunity cost. Absolute speed alone does not settle it.'}
+  }
+];
+
+window.ECON_GLOSSARY = [
+ ['Scarcity', 'Resources are limited relative to the ways we would like to use them.', 'scarcity'],
+ ['Trade-off', 'Giving up some of one thing to get more of another.', 'scarcity'],
+ ['Opportunity cost', 'The value of the next-best alternative you give up.', 'opportunity-cost'],
+ ['Marginal benefit', 'The additional benefit of one more unit or a small extra action.', 'at-the-margin'],
+ ['Marginal cost', 'The additional cost of one more unit or a small extra action.', 'at-the-margin'],
+ ['Sunk cost', 'A cost already incurred that cannot be recovered.', 'at-the-margin'],
+ ['Demand', 'The quantities buyers are willing and able to purchase at different prices, holding other influences constant.', 'supply-demand'],
+ ['Supply', 'The quantities sellers are willing and able to offer at different prices, holding other influences constant.', 'supply-demand'],
+ ['Equilibrium', 'A price and quantity where quantity demanded equals quantity supplied.', 'equilibrium'],
+ ['Shortage', 'At a given price, quantity demanded exceeds quantity supplied.', 'equilibrium'],
+ ['Surplus', 'At a given price, quantity supplied exceeds quantity demanded.', 'equilibrium'],
+ ['Elasticity', 'How responsive one variable is to a change in another, measured using percentage changes.', 'elasticity'],
+ ['Externality', 'A cost or benefit to a third party that is not fully reflected in a transaction’s price.', 'externalities'],
+ ['GDP', 'The market value of final goods and services produced within a country during a period.', 'gdp'],
+ ['Real GDP', 'GDP adjusted for price changes, helping measure changes in production over time.', 'gdp'],
+ ['Inflation', 'An increase in the general price level over time.', 'inflation'],
+ ['Disinflation', 'A slowdown in inflation. With a positive rate, the general price level still rises.', 'inflation'],
+ ['Deflation', 'A decrease in the general price level.', 'inflation'],
+ ['Purchasing power', 'How much your money can buy.', 'inflation'],
+ ['Interest rate', 'The borrowing cost or lending return as a share of the principal over a stated period.', 'interest-rates'],
+ ['Labour force', 'People who are employed plus people who meet the definition of unemployed.', 'unemployment'],
+ ['Unemployment rate', 'Unemployed people divided by the labour force, multiplied by 100.', 'unemployment'],
+ ['Comparative advantage', 'The ability to produce a good or service at a lower opportunity cost.', 'trade'],
+ ['Absolute advantage', 'The ability to produce more output using the same resources.', 'trade']
+].sort((a,b)=>a[0].localeCompare(b[0]));
