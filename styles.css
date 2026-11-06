@@ -46,3 +46,8 @@ body.gdrawer-on .gdrawer-tab{opacity:0;pointer-events:none}
 @media(prefers-reduced-motion:reduce){.gdrawer,.gdrawer:not(.open){transition:none}}
 @media(max-width:600px){.gdrawer-tab{top:auto;bottom:18px;left:14px;transform:none;width:46px;height:46px;padding:0;border-radius:50%;justify-content:center;gap:0;box-shadow:0 4px 14px #203c3240}.gdrawer-tab:hover,.gdrawer-tab[aria-expanded=true]{padding:0}.gdrawer-tab-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}.gdrawer-tab-mark{font-size:18px}.filters{gap:2px}.filter{padding:8px 7px;font-size:12px}.filter span{margin-left:3px}}
 .eyebrow-mark{height:24px;width:auto;display:block;flex-shrink:0;margin-right:2px}@media(max-width:600px){.eyebrow-mark{height:21px}}
+.about-art{flex-direction:column;justify-content:center;gap:0}
+.about-logo{display:block;width:100%;max-width:440px;height:auto}
+.about-art .about-stamp{position:relative;right:auto;bottom:auto;align-self:flex-end;margin-top:22px;margin-right:6px}
+.gdrawer-head .eyebrow-mark{height:20px}
+@media(max-width:600px){.about-art{min-height:0;max-width:none;padding:18px 0 4px}.about-logo{max-width:300px;margin:0 auto}.about-art .about-stamp{margin-top:14px;margin-right:0}}
