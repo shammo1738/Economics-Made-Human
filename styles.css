@@ -59,3 +59,8 @@ body.gdrawer-on .gdrawer-tab{opacity:0;pointer-events:none}
 @media(max-width:600px){.hero-actions{gap:18px}.hero-actions .button{white-space:nowrap;padding:13px 15px;gap:14px}.hero-actions .text-link{white-space:nowrap}}
 @media(max-width:360px){.hero-actions{flex-wrap:wrap;row-gap:14px}}
 @media(max-width:360px){.brand-logo{height:38px}.site-header nav{gap:12px}}
+.privacy-note{padding-bottom:12px}
+.legal-note{font-size:12.5px;line-height:1.7;color:var(--muted);padding-bottom:34px}
+.legal-note a{text-decoration:underline;text-underline-offset:3px}
+.legal-note a:hover{color:var(--ink)}
+.legal-sep{margin:0 9px;color:#aab3a3}
