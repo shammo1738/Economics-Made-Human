@@ -3,6 +3,11 @@ Economics, made human. 12 clear, step-by-step lessons in plain English, everyday
 
 Live site: https://shammo1738.github.io/economicsmadehuman/
 
+## Privacy
+This site uses Google Analytics to count visits and see which lessons are useful. It sets cookies and shares things like the pages you view, your approximate location and your device type with Google. It doesn't collect your name or contact details, and your lesson progress stays in your browser.
+
+You can block it with your browser's privacy settings, an ad blocker, or [Google's opt-out add-on](https://tools.google.com/dlpage/gaoptout). See [how Google uses this data](https://policies.google.com/technologies/partner-sites).
+
 ## License
 Copyright (c) 2026 shammo1738. All rights reserved. See [LICENSE](LICENSE) for details.
 
