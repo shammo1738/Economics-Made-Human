@@ -17,20 +17,31 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://shammo1738.github.io/economicsmadehuman/">
   <title>Economics, made human — by Omar</title>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
   <script defer src="lessons.js"></script>
   <script defer src="app.js"></script>
+  <script defer src="drawer.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="header-inner">
-      <a href="#home" class="brand" aria-label="Economics by Omar, home"><svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3v34M3 20h34M8 8l24 24M8 32 32 8"/></svg><span class="brand-name">Economics<span class="brand-period">.</span><small>by Omar</small></span></a>
+      <a href="#home" class="brand" aria-label="Economics. Made human. by Omar, home"><img class="brand-logo" src="assets/logo.png" width="293" height="112" alt=""></a>
       <nav aria-label="Main navigation"><a href="#lessons">Lessons</a><a href="#playground">Playground</a><a href="#glossary">Glossary</a><a href="#about">About</a></nav>
       <button class="progress-trigger" data-action="progress" aria-label="View your learning progress"><span class="progress-dot"></span><span class="progress-label">Your progress</span><span id="header-progress">0/12</span></button>
     </div>
   </header>
+  <div class="gdrawer-zone" id="gdrawer-zone" aria-hidden="true"></div>
+  <button class="gdrawer-tab" id="gdrawer-tab" aria-expanded="false" aria-controls="gdrawer"><span class="gdrawer-tab-mark" aria-hidden="true">Aa</span><span class="gdrawer-tab-label">Glossary</span></button>
+  <aside class="gdrawer" id="gdrawer" aria-labelledby="gdrawer-title">
+    <div class="gdrawer-head"><div><div class="eyebrow"><span class="tiny-star" aria-hidden="true">✳</span>QUICK GLOSSARY</div><h2 id="gdrawer-title">Look it up.</h2></div><button class="icon-button gdrawer-x" id="gdrawer-x" aria-label="Close glossary">×</button></div>
+    <p class="gdrawer-intro">Plain-English meanings for the words economists use. Tap a term to open it.</p>
+    <label class="search-field gdrawer-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span class="sr-only">Search the glossary</span><input id="gdrawer-search" type="search" placeholder="Search terms" autocomplete="off"></label>
+    <p class="gdrawer-count" id="gdrawer-count" aria-live="polite"></p>
+    <ul class="gdrawer-list" id="gdrawer-list"></ul>
+  </aside>
   <main id="main">
     <div id="home-view">
       <section class="hero container" aria-labelledby="hero-title">
