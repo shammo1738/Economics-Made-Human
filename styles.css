@@ -64,3 +64,4 @@ body.gdrawer-on .gdrawer-tab{opacity:0;pointer-events:none}
 .legal-note a{text-decoration:underline;text-underline-offset:3px}
 .legal-note a:hover{color:var(--ink)}
 .legal-sep{margin:0 9px;color:#aab3a3}
+.legal-note{text-align:center}
