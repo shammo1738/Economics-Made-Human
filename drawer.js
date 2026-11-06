@@ -63,7 +63,16 @@
   document.addEventListener('pointerdown', e => {
     if (panel.classList.contains('open') && !panel.contains(e.target) && !tab.contains(e.target)) close();
   });
+  // The "Glossary" nav link (and any #glossary link) opens the drawer instead of scrolling.
+  const openWithSearch = () => { open(); setTimeout(() => search.focus({preventScroll: true}), 260); };
+  document.addEventListener('click', e => {
+    const link = e.target.closest('[data-open-glossary], a[href="#glossary"]');
+    if (!link) return;
+    e.preventDefault();
+    openWithSearch();
+  });
   search.addEventListener('input', render);
   panel.inert = true;
   render();
+  if (location.hash === '#glossary') { history.replaceState(null, '', location.pathname + location.search); openWithSearch(); }
 })();

@@ -34,7 +34,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="#home" class="brand" aria-label="Economics. Made human. by Omar, home"><img class="brand-logo" src="assets/logo.png" width="293" height="112" alt=""></a>
-      <nav aria-label="Main navigation"><a href="#lessons">Lessons</a><a href="#playground">Playground</a><a href="#glossary">Glossary</a><a href="#about">About</a></nav>
+      <nav aria-label="Main navigation"><a href="#lessons">Lessons</a><a href="#playground">Playground</a><a href="#glossary" data-open-glossary>Glossary</a><a href="#about">About</a></nav>
       <button class="progress-trigger" data-action="progress" aria-label="View your learning progress"><span class="progress-dot"></span><span class="progress-label">Your progress</span><span id="header-progress">0/12</span></button>
     </div>
   </header>
@@ -54,27 +54,17 @@
           <div class="eyebrow"><img class="eyebrow-mark" src="assets/mark.png" width="28" height="24" alt=""> BIG IDEAS. PLAIN ENGLISH.</div>
           <h1 id="hero-title">Economics.<br> <span>Made human.</span></h1>
           <p>Understand the world, one small idea at a time.<br class="desktop-break"> Clear lessons, everyday examples, and a few<br class="desktop-break"> “oh, that makes sense” moments.</p>
-          <div class="hero-actions"><a class="button button-dark" href="#lesson/scarcity/0" id="start-button">Start learning <span aria-hidden="true">↗</span></a><a class="text-link" href="#playground">Try an experiment <span aria-hidden="true">→</span></a></div>
-          <div class="hero-note"><span class="check-circle">✓</span> No background needed. Just curiosity.</div>
+          <div class="hero-actions"><a class="button button-dark" href="#lesson/scarcity/0" id="start-button">Start lesson 1 <span aria-hidden="true">↗</span></a><a class="text-link" href="#lessons">See all 12 lessons <span aria-hidden="true">↓</span></a></div>
+          <div class="hero-note"><span class="check-circle">✓</span><span class="note-item">No background needed</span><span class="note-sep" aria-hidden="true">·</span><span class="note-item">5–8 minute lessons</span><span class="note-sep" aria-hidden="true">·</span><span class="note-item">Free</span></div>
         </div>
         <div class="hero-visual">
-          <div class="visual-orbit" aria-hidden="true"></div>
-          <div class="market-card">
-            <div class="market-card-top"><span class="micro-label"><span class="live-dot"></span> THE EVERYDAY ECONOMY</span><span class="mini-tag">Interactive</span></div>
-            <div class="market-title"><h2>What’s the right<br> price for a coffee?</h2><div class="coffee-icon" aria-hidden="true"><svg viewBox="0 0 60 60"><path d="M13 23h30v17c0 9-30 9-30 0zM43 26h5c12 0 10 15-5 15M10 49h37M22 8c-8 6 8 7 0 13M33 5c-8 6 8 7 0 13"/></svg></div></div>
-            <div id="hero-chart" class="market-graph"></div>
-            <div class="market-controls"><label for="hero-price">Price per cup <strong id="hero-price-value">$5.00</strong></label><input id="hero-price" type="range" min="2" max="8" step="0.5" value="5" aria-describedby="hero-market-message"><div class="range-labels"><span>$2</span><span>$8</span></div></div>
-            <div class="market-result" id="hero-market-message" aria-live="polite"></div>
-          </div>
-          <div class="visual-note"><svg viewBox="0 0 52 33" aria-hidden="true"><path d="M3 5c18 24 35 21 41 2m-10 8 11-10 4 14"/></svg><span>A little nudge. A whole new perspective.</span></div>
+          <a class="next-card" id="next-card" href="#lesson/scarcity/0"></a>
         </div>
       </section>
-      <div class="intro-strip container"><div><span class="strip-icon">↗</span> Real-life thinking</div><span class="strip-separator"></span><div><span class="strip-icon">◷</span> 5–8 minute lessons</div><span class="strip-separator"></span><div><img class="strip-mark" src="assets/mark.png" width="26" height="22" alt=""> Learn by doing</div><span class="strip-separator"></span><div><span class="strip-icon">◎</span> At your own pace</div></div>
       <section id="lessons" class="lessons-section container" aria-labelledby="lessons-heading">
-        <div class="section-heading"><div><div class="eyebrow">YOUR LEARNING PATH</div><h2 id="lessons-heading">Small lessons.<br> Big lightbulb moments.</h2></div><p>Start with the basics. Follow your curiosity.<br> Every lesson turns a big idea into<br> something you can actually use.</p></div>
-        <div class="catalog-toolbar"><div class="filters" role="group" aria-label="Filter lessons by topic"><button class="filter active" data-category="All" aria-pressed="true">All lessons <span>12</span></button><button class="filter" data-category="Foundations" aria-pressed="false">Foundations</button><button class="filter" data-category="Markets" aria-pressed="false">Markets</button><button class="filter" data-category="The big picture" aria-pressed="false">The big picture</button></div><label class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="lesson-search" type="search" placeholder="Find a lesson" aria-label="Find a lesson"></label></div>
-        <div id="lesson-grid" class="lesson-grid"></div>
-        <div class="catalog-bottom"><p id="lesson-count">A little more understanding with every lesson.</p><button class="button button-outline" id="show-all">Explore all 12 lessons <span aria-hidden="true">↓</span></button></div>
+        <div class="section-heading"><div><div class="eyebrow">YOUR LEARNING PATH</div><h2 id="lessons-heading">Small lessons.<br> Big lightbulb moments.</h2></div><p>12 lessons in 3 units. Going in order works best, but you can start wherever you’re curious.</p></div>
+        <ol class="lesson-recipe" aria-label="Every lesson has four small steps"><li><span>1</span>The idea</li><li><span>2</span>Break it down</li><li><span>3</span>Try it yourself</li><li><span>4</span>Make it stick</li></ol>
+        <div id="lesson-path" class="lesson-path"></div>
       </section>
       <section id="playground" class="playground-section" aria-labelledby="playground-heading">
         <div class="container">
@@ -82,8 +72,6 @@
           <div class="lab-layout"><div class="lab-menu" role="group" aria-label="Choose an experiment"><button class="lab-tab active" data-lab="market" aria-pressed="true"><span class="lab-number">01</span><span><strong>Run the coffee market</strong><small>Supply, demand & finding balance</small></span><span class="lab-arrow">↗</span></button><button class="lab-tab" data-lab="inflation" aria-pressed="false"><span class="lab-number">02</span><span><strong>Follow your $100</strong><small>Inflation & purchasing power</small></span><span class="lab-arrow">↗</span></button><button class="lab-tab" data-lab="time" aria-pressed="false"><span class="lab-number">03</span><span><strong>Spend your Saturday</strong><small>Choice & opportunity cost</small></span><span class="lab-arrow">↗</span></button><p class="lab-footnote">Simple models. Useful intuitions.<br> All numbers are illustrative.</p></div><div class="lab-stage" id="lab-stage"></div></div>
         </div>
       </section>
-      <section class="how-section container"><div><div class="eyebrow">ONE IDEA AT A TIME</div><h2>You don’t need to<br> “be good at economics.”</h2><p>You just need a good place to start.</p></div><ol class="how-steps"><li><span>01</span><div><h3>Get the idea.</h3><p>A simple explanation, without the jargon.</p></div></li><li><span>02</span><div><h3>See it in your world.</h3><p>Coffee, concert tickets, work, and everyday choices.</p></div></li><li><span>03</span><div><h3>Make it click.</h3><p>Try an example. Check your thinking. Keep going.</p></div></li></ol></section>
-      <section id="glossary" class="glossary-section container" aria-labelledby="glossary-heading"><div class="section-heading"><div><div class="eyebrow">A LITTLE LESS JARGON</div><h2 id="glossary-heading">Big words. Simple meanings.</h2></div><label class="search-field glossary-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="glossary-search" type="search" placeholder="Search 24 everyday definitions" aria-label="Search glossary"></label></div><div id="glossary-list" class="glossary-list"></div><button class="text-link glossary-more" id="glossary-more">See the whole glossary <span aria-hidden="true">↓</span></button></section>
       <section id="about" class="about-section container"><div class="about-art" aria-hidden="true"><img class="about-logo" src="assets/logo-full.png" width="1807" height="477" alt="" loading="lazy"><div class="about-stamp">A little curiosity<br> goes a long way.</div></div><div class="about-copy"><div class="eyebrow">A LEARNING SPACE BY OMAR</div><h2>The world is complicated.<br> Understanding it<br> shouldn’t have to be.</h2><p>Economics lives in the decisions we make every day: how we spend our time, why prices change, and what we owe each other.</p><p>This is a place to make those ideas approachable. Clear explanations. Room to experiment. And the belief that a little understanding can change how you see a lot.</p><a href="#lesson/scarcity/0" class="text-link">Let’s make sense of it together <span aria-hidden="true">↗</span></a><div class="omar-signature">Omar<span>Curiosity, shared.</span></div></div></section>
       <section class="resources container"><span>KEEP YOUR CURIOSITY GOING</span><a href="https://openstax.org/books/principles-economics-3e/pages/1-introduction" target="_blank" rel="noopener noreferrer">OpenStax · Principles of Economics <span>↗</span></a><a href="https://www.bankofcanada.ca/core-functions/monetary-policy/inflation/" target="_blank" rel="noopener noreferrer">Bank of Canada · Understanding inflation <span>↗</span></a></section>
     </div>

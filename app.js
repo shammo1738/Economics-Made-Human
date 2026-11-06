@@ -16,7 +16,7 @@
       if(raw.last && ids.has(raw.last.id)) saved.last = {id:raw.last.id,step:Math.max(0,Math.min(3,Number(raw.last.step)||0))};
     }
   } catch { storageWorks = false; }
-  let currentCategory='All', showAll=false, showGlossary=false, activeLab='market', activeLesson=null, activeStep=0;
+  let activeLab='market', activeLesson=null, activeStep=0;
   let labState={price:5,shift:0,rate:3,years:5,hours:4,wage:20};
   let practicePassed = new Set(), quizPassed = new Set(saved.completed), quizWrong = new Map();
   let toastTimer;
@@ -27,14 +27,35 @@
     catch{storageWorks=false;}
   }
   function toast(message){ $('#toast').textContent=message;$('#toast').classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('visible'),3500); }
+  const num=l=>String(lessons.indexOf(l)+1).padStart(2,'0');
+  function nextUp(){
+    const done=saved.completed;
+    if(done.length===lessons.length) return {state:'done'};
+    if(saved.last&&!done.includes(saved.last.id)) return {state:'resume',lesson:lessons.find(l=>l.id===saved.last.id),step:saved.last.step};
+    return {state:done.length?'next':'new',lesson:lessons.find(l=>!done.includes(l.id)),step:0};
+  }
   function updateProgress(){
-    $('#header-progress').textContent=`${saved.completed.length}/12`;
-    $('.progress-trigger').setAttribute('aria-label',`View your progress: ${saved.completed.length} of 12 lessons complete`);
-    const firstUnfinished=lessons.find(l=>!saved.completed.includes(l.id));
-    const next=saved.last&&!saved.completed.includes(saved.last.id)?saved.last:saved.completed.length&&firstUnfinished?{id:firstUnfinished.id,step:0}:null;
-    const start=$('#start-button');
-    start.href=saved.completed.length===12?'#lessons':next?`#lesson/${next.id}/${next.step}`:'#lesson/scarcity/0';
-    start.innerHTML=`${saved.completed.length===12?'Revisit the lessons':next?'Continue learning':'Start learning'} <span aria-hidden="true">↗</span>`;
+    const count=saved.completed.length, up=nextUp();
+    $('#header-progress').textContent=`${count}/12`;
+    $('.progress-trigger').setAttribute('aria-label',`View your progress: ${count} of 12 lessons complete`);
+    const start=$('#start-button'); if(!start) return;
+    if(up.state==='done'){start.href='#lessons';start.innerHTML='Revisit the lessons <span aria-hidden="true">↗</span>';}
+    else{const n=lessons.indexOf(up.lesson)+1;start.href=`#lesson/${up.lesson.id}/${up.step}`;start.innerHTML=`${up.state==='resume'?'Continue':'Start'} lesson ${n} <span aria-hidden="true">↗</span>`;}
+    renderNextCard(up,count);
+  }
+  function renderNextCard(up,count){
+    const card=$('#next-card'); if(!card) return;
+    const track=`<div class="next-progress"><div class="next-progress-label"><span>Your progress</span><strong>${count} of 12 lessons</strong></div><div class="progress-track" aria-hidden="true"><span style="width:${count/12*100}%"></span></div></div>`;
+    if(up.state==='done'){
+      card.href='#playground';
+      card.setAttribute('aria-label','All 12 lessons complete. Go to the playground.');
+      card.innerHTML=`<div class="next-label">ALL 12 LESSONS COMPLETE</div><div class="next-body"><h2>You did it. Every idea, unlocked.</h2><p>Keep the ideas fresh by experimenting in the playground, or revisit any lesson below.</p><span class="next-go">Open the playground <span aria-hidden="true">→</span></span></div>${track}`;
+      return;
+    }
+    const l=up.lesson, label={new:'START HERE',next:'UP NEXT',resume:'PICK UP WHERE YOU LEFT OFF'}[up.state];
+    card.href=`#lesson/${l.id}/${up.step}`;
+    card.setAttribute('aria-label',`${label.toLowerCase()}: lesson ${lessons.indexOf(l)+1}, ${l.short}, ${l.time} minutes`);
+    card.innerHTML=`<div class="next-label"><span class="live-dot"></span>${label}</div><div class="lesson-art ${l.color}"><span class="lesson-number">LESSON ${num(l)}</span>${illustration(l.art)}</div><div class="next-body"><div class="card-kicker"><span>${l.category}</span><span>◷ ${l.time} min</span></div><h2>${l.title}</h2><p>${l.description}</p><ol class="next-steps" aria-hidden="true">${stepNames.map((n,i)=>`<li class="${i<up.step?'done':i===up.step?'current':''}">${n}</li>`).join('')}</ol><span class="next-go">${up.state==='resume'?`Continue from step ${up.step+1}`:'Start this lesson'} <span aria-hidden="true">→</span></span></div>${track}`;
   }
 
   function illustration(type){
@@ -57,14 +78,16 @@
     return `<svg viewBox="0 0 340 164" aria-hidden="true"><circle cx="170" cy="82" r="62" fill="#ffffff" opacity=".18"/>${designs[type]||designs.curves}</svg>`;
   }
 
-  function renderLessons(){
-    const query=$('#lesson-search').value.trim().toLowerCase();
-    const matches=lessons.filter(l=>(currentCategory==='All'||l.category===currentCategory)&&`${l.title} ${l.short} ${l.description} ${l.idea}`.toLowerCase().includes(query));
-    const shown=(showAll||currentCategory!=='All'||query)?matches:matches.slice(0,6);
-    $('#lesson-grid').innerHTML=shown.map(l=>`<a class="lesson-card" href="#lesson/${l.id}/0" aria-label="${escape(l.short)}, ${l.time} minute lesson${saved.completed.includes(l.id)?', completed':''}"><div class="lesson-art ${l.color}"><span class="lesson-number">${String(lessons.indexOf(l)+1).padStart(2,'0')}</span>${illustration(l.art)}${saved.completed.includes(l.id)?'<span class="lesson-complete" aria-label="Completed">✓</span>':''}</div><div class="lesson-card-body"><div class="card-kicker"><span>${l.category}</span><span>◷ ${l.time} min</span></div><h3>${l.title}</h3><p>${l.description}</p><div class="card-bottom"><span>${l.short}</span><span aria-hidden="true">↗</span></div></div></a>`).join('')||'<div class="empty-state"><h3>No lessons found.</h3><p>Try a topic like “prices”, “choice”, or “inflation”.</p></div>';
-    $('#show-all').hidden=!!query||currentCategory!=='All';
-    $('#show-all').innerHTML=showAll?'Show fewer lessons <span aria-hidden="true">↑</span>':'Explore all 12 lessons <span aria-hidden="true">↓</span>';
-    $('#lesson-count').textContent=query?`${matches.length} matching lesson${matches.length===1?'':'s'}`:currentCategory==='All'?'A little more understanding with every lesson.':`${matches.length} lessons · ${currentCategory}`;
+  function renderPath(){
+    const box=$('#lesson-path'); if(!box) return;
+    const up=nextUp(), units=[...new Set(lessons.map(l=>l.category))];
+    box.innerHTML=units.map((u,ui)=>{
+      const list=lessons.filter(l=>l.category===u), done=list.filter(l=>saved.completed.includes(l.id)).length;
+      return `<section class="unit" aria-labelledby="unit-${ui}"><div class="unit-head"><span class="unit-label">UNIT ${ui+1}</span><h3 id="unit-${ui}">${u}</h3><span class="unit-count">${done===list.length?'✓ Complete':`${done} of ${list.length} done`}</span></div><ol class="path-list">${list.map(l=>{
+        const isDone=saved.completed.includes(l.id), isNext=up.lesson===l, step=isNext?up.step:0;
+        const status=isDone?'Done':isNext?(up.state==='resume'?'Continue':'Start'):'';
+        return `<li class="path-item ${isDone?'done':isNext?'next':''}"><a href="#lesson/${l.id}/${step}" aria-label="Lesson ${lessons.indexOf(l)+1}: ${escape(l.short)}, ${l.time} minutes${isDone?', completed':isNext?', up next':''}"><span class="path-marker" aria-hidden="true">${isDone?'✓':num(l)}</span><span class="path-thumb ${l.color}" aria-hidden="true">${illustration(l.art)}</span><span class="path-text">${isNext?'<span class="path-flag">Up next</span>':''}<strong>${l.title}</strong><small>${l.description}</small></span><span class="path-meta">◷ ${l.time} min</span><span class="path-status">${status}${status&&!isDone?' <span aria-hidden="true">→</span>':''}</span></a></li>`;}).join('')}</ol></section>`;
+    }).join('');
   }
 
   function marketGraph(price,shift=0){
@@ -73,13 +96,6 @@
     const grid=[2,4,6,8,10].map(p=>`<path d="M45 ${y(p)}H465" stroke="#e5e9df" stroke-width=".8"/>`).join('')+[20,40,60,80,100,120].map(q=>`<path d="M${x(q)} 43V241" stroke="#e5e9df" stroke-width=".8"/>`).join('');
     return `<svg viewBox="0 0 500 284" role="img" aria-label="Supply and demand for coffee. At ${money(price)}, ${qd} cups demanded and ${qs} supplied. Equilibrium is ${money(eqP)} and ${eqQ} cups per hour."><text class="chart-label" x="9" y="21" fill="#7e8c72" style="font-size:10px">Price ($)</text>${grid}<path d="M45 37v204h427" stroke="#9da991" stroke-width="1" fill="none"/>${[0,5,10].map(p=>`<text x="33" y="${y(p)+3}" text-anchor="end" class="chart-label" style="font-size:9px" fill="#8f9c85">${p}</text>`).join('')}${[0,60,120].map(q=>`<text x="${x(q)}" y="258" text-anchor="middle" class="chart-label" style="font-size:9px" fill="#8f9c85">${q}</text>`).join('')}<text x="465" y="278" text-anchor="end" class="chart-label" fill="#7e8c72" style="font-size:10px">Cups per hour</text><path d="M${x(shift)} ${y(10)}L${x(100+shift)} ${y(0)}" stroke="#698bb2" stroke-width="2.7"/><path d="M${x(0)} ${y(0)}L${x(100)} ${y(10)}" stroke="#c8895f" stroke-width="2.7"/><text x="${x(shift)+12}" y="40" class="chart-label" fill="#698bb2" style="font-size:11px">Demand</text><text x="${x(100)-39}" y="32" class="chart-label" fill="#b97d52" style="font-size:11px">Supply</text><path d="M45 ${y(price)}H465" stroke="#a3b297" stroke-width="1" stroke-dasharray="4 5"/><path d="M${x(eqQ)} ${y(eqP)}V241" stroke="#b1be9f" stroke-width="1" stroke-dasharray="3 5"/><circle cx="${x(eqQ)}" cy="${y(eqP)}" r="16" fill="#a8b98d" fill-opacity=".16"/><circle cx="${x(eqQ)}" cy="${y(eqP)}" r="5" fill="#698057"/><circle cx="${x(qd)}" cy="${y(price)}" r="5.5" fill="#698bb2" stroke="#fffef9" stroke-width="2"/><circle cx="${x(qs)}" cy="${y(price)}" r="5.5" fill="#c8895f" stroke="#fffef9" stroke-width="2"/><rect x="9" y="${y(price)-9}" width="31" height="18" rx="4" fill="#eef2e6"/><text x="25" y="${y(price)+3}" text-anchor="middle" class="chart-label" style="font-size:10px" fill="#5d7451">${price.toFixed(1)}</text>${Math.abs(qd-qs)<1?`<rect x="${x(eqQ)+12}" y="${y(eqP)-34}" width="60" height="22" rx="4" fill="#edf1e5"/><text x="${x(eqQ)+42}" y="${y(eqP)-19}" text-anchor="middle" class="chart-label" style="font-size:10px" fill="#60754d">Balance!</text>`:''}</svg>`;
   }
-  function updateHero(){
-    const p=Number($('#hero-price').value),qd=100-10*p,qs=10*p,gap=qd-qs;
-    $('#hero-chart').innerHTML=marketGraph(p);
-    $('#hero-price-value').textContent=money(p);
-    $('#hero-market-message').innerHTML=`<span class="result-pill ${gap?'imbalance':''}">${gap===0?'In balance':gap>0?'Shortage':'Surplus'}</span><span>${gap===0?'50 cups wanted. 50 cups offered. A match.':gap>0?`${gap} more cups wanted than offered.`:`${-gap} more cups offered than wanted.`}</span>`;
-  }
-
   function renderLab(){
     $$('.lab-tab').forEach(b=>{const on=b.dataset.lab===activeLab;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on);});
     if(activeLab==='market') $('#lab-stage').innerHTML=`<h3>A market in your hands.</h3><p>Set the coffee price. Then bring in some new customers. Watch the market respond.</p><div class="lab-split"><div class="lab-graph" id="lab-market-chart"></div><div class="lab-control"><label class="field-label" for="lab-price">Price per cup <strong id="lab-price-value"></strong></label><input id="lab-price" type="range" min="2" max="8" step="0.5" value="${labState.price}"><div class="range-labels"><span>$2</span><span>$8</span></div><p>What if a new office opens nearby?</p><div class="lab-controls-inline"><button class="small-button ${labState.shift===0?'active':''}" data-demand="0" aria-pressed="${labState.shift===0}">Usual day</button><button class="small-button ${labState.shift===20?'active':''}" data-demand="20" aria-pressed="${labState.shift===20}">More customers</button></div><p id="market-quantities"></p></div></div><div class="lab-insight" aria-live="polite"><img class="insight-mark" src="assets/mark.png" width="22" height="19" alt=""><p id="market-insight"></p></div><p class="lab-assumption">Illustrative model: demand = 100 + demand shift − 10P; supply = 10P. Quantities are cups per hour. Other influences are held constant.</p>`;
@@ -108,15 +124,6 @@
       $('#time-insight').innerHTML=`<strong>${8-s.hours} free hours mean ${money((8-s.hours)*s.wage)} in foregone pay.</strong> ${s.hours===8?'You chose the highest earnings here, but you gave up all eight free hours.':`One extra free hour would mean giving up ${money(s.wage)} in pay.`} There is no single right split: it depends on what you value.`;
     }
   }
-  function renderGlossary(){
-    const query=$('#glossary-search').value.trim().toLowerCase();
-    const all=glossary.filter(g=>`${g[0]} ${g[1]}`.toLowerCase().includes(query));
-    const selected=(showGlossary||query)?all:all.filter(g=>['Demand','Equilibrium','Inflation','Opportunity cost','Scarcity','Supply'].includes(g[0]));
-    $('#glossary-list').innerHTML=selected.map(g=>`<details class="glossary-item"><summary>${g[0]}</summary><p>${g[1]}</p><a href="#lesson/${g[2]}/0">Explore the related lesson ↗</a></details>`).join('')||'<div class="empty-state"><h3>No matching terms.</h3><p>Try “price”, “cost”, or “work”.</p></div>';
-    $('#glossary-more').hidden=!!query;
-    $('#glossary-more').innerHTML=showGlossary?'Show fewer terms <span aria-hidden="true">↑</span>':'See the whole glossary <span aria-hidden="true">↓</span>';
-  }
-
   function showProgress(){
     const count=saved.completed.length;
     $('#progress-content').innerHTML=`<div class="progress-big">${count}<small> / 12 ideas unlocked</small></div><div class="progress-track" role="progressbar" aria-label="Lessons complete" aria-valuemin="0" aria-valuemax="12" aria-valuenow="${count}"><span style="width:${count/12*100}%"></span></div><p class="progress-help">${count===12?'You completed every lesson. Revisit an idea or keep experimenting in the playground.':count===0?'Every clear idea starts somewhere. Complete the final check in a lesson to save your progress.':'A little more understanding, one lesson at a time. Pick up where you left off or follow a new idea.'}</p><div class="progress-lessons">${lessons.map((l,i)=>`<a href="#lesson/${l.id}/0" class="${saved.completed.includes(l.id)?'done':''}" data-close-dialog><span>${saved.completed.includes(l.id)?'✓':String(i+1).padStart(2,'0')}</span>${l.short}<span>→</span></a>`).join('')}</div>${count?'<button class="reset-progress" data-action="reset-progress">Reset learning progress</button>':''}`;
@@ -162,18 +169,15 @@
     if(m){renderLesson(m[1],Math.min(3,Number(m[2])),{focus:!initial});return;}
     const wasLesson=!$('#lesson-view').hidden;
     $('#home-view').hidden=false;$('#lesson-view').hidden=true;activeLesson=null;document.title='Economics, made human — by Omar';
-    renderLessons();updateProgress();
-    const known=['#home','#lessons','#playground','#glossary','#about'];
+    renderPath();updateProgress();
+    const known=['#home','#lessons','#playground','#about'];
     if(known.includes(hash)) requestAnimationFrame(()=>{if(hash==='#home')window.scrollTo({top:0,behavior:initial||wasLesson?'instant':'smooth'});else $(hash)?.scrollIntoView({behavior:initial||wasLesson?'instant':'smooth',block:'start'});});
   }
 
   document.addEventListener('click',e=>{
     const el=e.target.closest('button,a');if(!el)return;
-    if(el.dataset.category){currentCategory=el.dataset.category;$$('.filter').forEach(b=>{const on=b===el;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on);});renderLessons();}
-    if(el.id==='show-all'){showAll=!showAll;renderLessons();if(!showAll)$('#lessons').scrollIntoView({behavior:'smooth'});}
     if(el.dataset.lab){activeLab=el.dataset.lab;renderLab();}
     if(el.dataset.demand!==undefined){labState.shift=Number(el.dataset.demand);$$('[data-demand]').forEach(b=>{const on=Number(b.dataset.demand)===labState.shift;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on);});updateLab();}
-    if(el.id==='glossary-more'){showGlossary=!showGlossary;renderGlossary();if(!showGlossary)$('#glossary').scrollIntoView({behavior:'smooth'});}
     if(el.dataset.answer!==undefined)checkQuiz(Number(el.dataset.answer));
     if(el.dataset.jumpLab){activeLab=el.dataset.jumpLab;renderLab();location.hash='#playground';}
     if(el.hasAttribute('data-close-dialog'))$('#progress-dialog').close();
@@ -185,16 +189,13 @@
       el.textContent='Reset all saved progress? Click again to confirm.';el.dataset.action='confirm-reset';
     }
     if(action==='confirm-reset'){
-      saved={completed:[],last:null};practicePassed.clear();quizPassed.clear();quizWrong.clear();persist();updateProgress();renderLessons();if(activeLesson)renderLesson(activeLesson.id,activeStep,{focus:false});showProgress();toast('Your learning progress has been reset.');
+      saved={completed:[],last:null};practicePassed.clear();quizPassed.clear();quizWrong.clear();persist();updateProgress();renderPath();if(activeLesson)renderLesson(activeLesson.id,activeStep,{focus:false});showProgress();toast('Your learning progress has been reset.');
     }
     if(el.classList.contains('skip-link')){e.preventDefault();$('#main').setAttribute('tabindex','-1');$('#main').focus();$('#main').scrollIntoView();}
   });
   $('#progress-dialog').addEventListener('click',e=>{if(e.target===$('#progress-dialog')){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
   document.addEventListener('input',e=>{
     const id=e.target.id;
-    if(id==='lesson-search')renderLessons();
-    if(id==='glossary-search')renderGlossary();
-    if(id==='hero-price')updateHero();
     const map={'lab-price':'price','inflation-rate':'rate','inflation-years':'years','work-hours':'hours','hourly-wage':'wage'};
     if(map[id]){labState[map[id]]=Number(e.target.value);updateLab();}
   });
@@ -204,5 +205,5 @@
     $('#practice-feedback').innerHTML=`<div class="feedback ${correct?'':'wrong'}"><strong>${correct?'Exactly. You’ve got it.':'Not quite yet. Let’s work through it.'}</strong>${l.practice.explanation}${correct?'':' You can update your answer and try again.'}</div>`;
   });
   window.addEventListener('hashchange',()=>route());
-  renderLessons();renderGlossary();renderLab();updateHero();updateProgress();route(true);
+  renderPath();renderLab();updateProgress();route(true);
 })();
