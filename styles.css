@@ -130,3 +130,6 @@ body.gdrawer-on .gdrawer-tab{opacity:0;pointer-events:none}
 .pitfall{color:#5b574a}.example-intro{color:#574e3d}.worked-steps p{color:#505c48}.hint-toggle{color:#5c6751}
 .hero{min-height:600px}@media(max-width:600px){.hero{min-height:0}}
 .hero-note{flex-wrap:wrap;row-gap:4px}.note-item{white-space:nowrap}
+
+/* Hand-drawn sketches (assets/js/sketch.js) */
+.has-underline{position:relative;display:inline-block}.hero-underline{position:absolute;left:0;width:100%;bottom:-.1em;height:.12em;overflow:visible}
