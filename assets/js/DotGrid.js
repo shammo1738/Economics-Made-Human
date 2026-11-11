@@ -1,5 +1,11 @@
-/* DotGrid from React Bits by David Haz (https://reactbits.dev), MIT + Commons Clause.
-   Ported to plain JavaScript: window.RB.DotGrid(container, options) returns a destroy function. */
+/*
+ * DotGrid from React Bits (https://reactbits.dev, https://github.com/DavidHDev/react-bits)
+ * Copyright (c) 2026 David Haz
+ * Licensed under MIT + Commons Clause License Condition v1.0. The full license
+ * text, including the permission notice, is in assets/js/LICENSE-react-bits.md.
+ * Modified: ported from React to plain JavaScript for this site.
+ * Usage: window.RB.DotGrid(container, options) returns a destroy function.
+ */
 (function () {
 'use strict';
 

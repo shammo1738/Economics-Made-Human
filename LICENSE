@@ -17,7 +17,10 @@ notice and remain the property of their respective owners. In particular, the
 Nimbus Sans font files in assets/fonts/nimbus-sans/ are Copyright 2014
 (URW)++ Design & Development and are licensed under the GNU Affero General
 Public License v3 with a font exception, as described in the LICENSE and
-COPYING files in that folder.
+COPYING files in that folder. The files assets/js/DotGrid.js,
+assets/js/MagnetLines.js and assets/js/react-bits.css are adapted from React
+Bits, Copyright (c) 2026 David Haz, and are licensed under the MIT + Commons
+Clause License Condition v1.0 in assets/js/LICENSE-react-bits.md.
 
 THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED. IN NO EVENT SHALL THE COPYRIGHT OWNER BE LIABLE FOR ANY CLAIM,
