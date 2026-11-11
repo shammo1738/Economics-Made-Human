@@ -133,3 +133,27 @@ body.gdrawer-on .gdrawer-tab{opacity:0;pointer-events:none}
 
 /* Hand-drawn sketches (assets/js/sketch.js) */
 .has-underline{position:relative;display:inline-block}.hero-underline{position:absolute;left:0;width:100%;bottom:-.1em;height:.12em;overflow:visible}
+
+/* Homepage touches (assets/js/extras.js) */
+/* B. graph paper */
+#home-view{position:relative}.hero{position:relative;z-index:1}
+.idea-graph{position:absolute;top:0;left:0;right:0;z-index:0;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,#000 60%,transparent);mask-image:linear-gradient(to bottom,#000 60%,transparent)}
+
+/* C. invisible forces */
+.playground-section{position:relative;overflow:hidden}.playground-section>.container{position:relative;z-index:1}
+.idea-forces{position:absolute!important;inset:0;z-index:0;pointer-events:none;opacity:.85;-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.25) 0,rgba(0,0,0,.25) 32%,#000 50%);mask-image:linear-gradient(to bottom,rgba(0,0,0,.25) 0,rgba(0,0,0,.25) 32%,#000 50%)}
+
+/* D. rotating line */
+.rot-line{color:var(--ink)}
+.rot{display:inline-grid;color:var(--orange);overflow:clip;overflow-clip-margin:3px;vertical-align:baseline}
+.rot-word{grid-area:1/1;white-space:nowrap}
+.rot-word .char,.rot-word div{display:inline-block}
+
+/* F. stamp */
+.about-stamp.idea-stamp{border-style:solid;font-family:"Nimbus Sans",Arial,sans-serif;font-style:normal;padding:0}
+.stamp-ring{position:absolute;inset:0;width:100%;height:100%}
+.stamp-ring text{font-size:11.4px;letter-spacing:.4px;fill:#886847;font-weight:700}
+.idea-stamp img{width:30px;height:auto;opacity:.9}
+
+/* G. sparks */
+.idea-sparks{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:95}
