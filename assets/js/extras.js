@@ -55,17 +55,22 @@
     p.setAttribute('aria-label', 'Economics is in your morning coffee, rent, Saturday, paycheck and grocery bill. Clear lessons, everyday examples, and a few “oh, that makes sense” moments.');
     if (reduce) return;
     const box = $('.rot', p);
-    let i = 0;
-    setInterval(() => {
+    let i = 0, cur = $('.rot-word', box), tl = null;
+    // Timed on GSAP's own clock (not setInterval) so swaps pause together with the
+    // animations in background tabs; otherwise words pile up and overlap.
+    const step = () => {
+      if (tl) tl.progress(1); // finish any in-flight swap so only one word remains
       i = (i + 1) % words.length;
-      const old = $('.rot-word', box);
+      const old = cur;
       const next = document.createElement('span'); next.className = 'rot-word'; next.textContent = words[i];
-      box.appendChild(next);
+      box.appendChild(next); cur = next;
       const a = SplitText.create(old, { type: 'chars' }), b = SplitText.create(next, { type: 'chars' });
-      gsap.timeline({ onComplete: () => old.remove() })
+      tl = gsap.timeline({ onComplete: () => { old.remove(); b.revert(); tl = null; } })
         .to(a.chars, { yPercent: -110, opacity: 0, stagger: 0.015, duration: 0.35, ease: 'power2.in' })
         .from(b.chars, { yPercent: 110, opacity: 0, stagger: 0.02, duration: 0.5, ease: 'back.out(1.6)' }, 0.18);
-    }, 2400);
+      gsap.delayedCall(2.4, step);
+    };
+    gsap.delayedCall(2.4, step);
   }
 
   /* ---------------- E. Read-along heading (ScrollReveal) ---------------- */
@@ -88,6 +93,8 @@
     if (!reduce) {
       const spin = gsap.to('.stamp-ring', { rotation: 360, duration: 22, ease: 'none', repeat: -1, transformOrigin: '50% 50%' });
       // speeds up a little while you scroll, like a record
+      // only spin while the stamp is on screen, so it costs nothing elsewhere
+      ScrollTrigger.create({ trigger: st, start: 'top bottom', end: 'bottom top', onToggle: self => self.isActive ? spin.resume() : spin.pause() });
       ScrollTrigger.create({ onUpdate: self => { const v = Math.min(Math.abs(self.getVelocity()) / 300, 6); gsap.to(spin, { timeScale: 1 + v, duration: 0.2, overwrite: true }); gsap.to(spin, { timeScale: 1, duration: 1.2, delay: 0.25 }); } });
     }
   }
@@ -97,6 +104,7 @@
     if (reduce) return;
     const c = document.createElement('canvas');
     c.className = 'idea-sparks'; c.setAttribute('aria-hidden', 'true');
+    c.style.visibility = 'hidden';
     document.body.appendChild(c);
     const ctx = c.getContext('2d');
     let sparks = [], raf = 0;
@@ -115,6 +123,7 @@
         ctx.stroke();
       }
       raf = sparks.length ? requestAnimationFrame(tick) : 0;
+      if (!raf) c.style.visibility = 'hidden'; // no idle full-screen layer
     };
     document.addEventListener('click', e => {
       const el = e.target.closest('.button, .button-dark, #start-button, .feedback, [data-answer], .lab-tab, .path-item a');
@@ -125,7 +134,7 @@
     function burst(x, y) {
       const t = performance.now();
       for (let i = 0; i < 8; i++) sparks.push({ x, y, t, a: (Math.PI * 2 * i) / 8 });
-      if (!raf) raf = requestAnimationFrame(tick);
+      if (!raf) { c.style.visibility = 'visible'; raf = requestAnimationFrame(tick); }
     }
   }
 
