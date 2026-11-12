@@ -1,7 +1,7 @@
 # economicsmadehuman
 Economics, made human. 12 clear, step-by-step lessons in plain English, everyday examples, interactive experiments in the Playground, and a glossary. No background needed, just curiosity.
 
-Live site: https://shammo1738.github.io/economicsmadehuman/
+Live site: https://economicsmadehuman.netlify.app/
 
 ## Privacy
 This site uses Google Analytics to count visits and see which lessons are useful. It sets cookies and shares things like the pages you view, your approximate location and your device type with Google. It doesn't collect your name or contact details, and your lesson progress stays in your browser.
