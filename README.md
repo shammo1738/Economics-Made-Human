@@ -11,6 +11,14 @@ This site uses Google Analytics to count visits and see which lessons are useful
 
 Like any web host, Netlify processes your IP address and basic request details (such as your browser type) to deliver the pages and keep the service secure. See [Netlify's privacy policy](https://www.netlify.com/privacy/).
 
+The animation library (GSAP) is loaded from the jsDelivr CDN, so jsDelivr also receives your IP address and request details when you load the page. See [jsDelivr's privacy policy](https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net). If you open an old link to the GitHub Pages address, GitHub serves that page briefly before sending you to the Netlify site. See [GitHub's privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
+
+Your lesson progress is saved only in your browser's local storage on your device. It is never sent anywhere, and you can clear it with "Reset learning progress" (under "Your progress") or by clearing your browser's site data.
+
+Questions about privacy? Email the address in the site footer.
+
+_Last updated: November 12, 2026._
+
 You can block it with your browser's privacy settings, an ad blocker, or [Google's opt-out add-on](https://tools.google.com/dlpage/gaoptout). See [how Google uses this data](https://policies.google.com/technologies/partner-sites).
 
 ## License
