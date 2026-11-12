@@ -1,0 +1,4 @@
+# Netlify settings for economicsmadehuman.netlify.app
+# Plain HTML, CSS and JavaScript: no build step, publish the repository root.
+[build]
+  publish = "."

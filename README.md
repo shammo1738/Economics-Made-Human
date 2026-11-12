@@ -3,8 +3,13 @@ Economics, made human. 12 clear, step-by-step lessons in plain English, everyday
 
 Live site: https://economicsmadehuman.netlify.app/
 
+## Hosting
+The site is hosted on [Netlify](https://www.netlify.com), which deploys every push to `main` automatically. The old address, https://shammo1738.github.io/economicsmadehuman/, still runs on GitHub Pages only to send visitors to the Netlify site (see the script at the top of `index.html`), so old links keep working. Keep GitHub Pages switched on for that.
+
 ## Privacy
 This site uses Google Analytics to count visits and see which lessons are useful. It sets cookies and shares things like the pages you view, your approximate location and your device type with Google. It doesn't collect your name or contact details, and your lesson progress stays in your browser.
+
+Like any web host, Netlify processes your IP address and basic request details (such as your browser type) to deliver the pages and keep the service secure. See [Netlify's privacy policy](https://www.netlify.com/privacy/).
 
 You can block it with your browser's privacy settings, an ad blocker, or [Google's opt-out add-on](https://tools.google.com/dlpage/gaoptout). See [how Google uses this data](https://policies.google.com/technologies/partner-sites).
 
