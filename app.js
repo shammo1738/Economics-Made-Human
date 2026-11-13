@@ -136,7 +136,7 @@
     activeLesson=l;activeStep=step;
     saved.last={id:l.id,step};persist();updateProgress();
     $('#home-view').hidden=true;$('#lesson-view').hidden=false;
-    document.title=`${l.short} — Economics by Omar`;
+    document.title=`${l.short} — Economics, made human`;
     const i=lessons.indexOf(l),next=lessons[i+1];
     let body='';
     if(step===0) body=`<h1 tabindex="-1">${l.title}</h1><p class="lesson-hook">${l.hook}</p><p class="lesson-prose">${l.idea}</p><div class="lesson-art ${l.color}">${illustration(l.art)}</div><div class="takeaway"><span>THE ONE THING TO REMEMBER</span><p>${l.takeaway}</p></div>`;
@@ -168,7 +168,7 @@
     const hash=location.hash||'#home';const m=hash.match(/^#lesson\/([a-z-]+)\/(\d+)$/);
     if(m){renderLesson(m[1],Math.min(3,Number(m[2])),{focus:!initial});return;}
     const wasLesson=!$('#lesson-view').hidden;
-    $('#home-view').hidden=false;$('#lesson-view').hidden=true;activeLesson=null;document.title='Economics, made human — by Omar';
+    $('#home-view').hidden=false;$('#lesson-view').hidden=true;activeLesson=null;document.title='Economics, made human';
     renderPath();updateProgress();
     const known=['#home','#lessons','#playground','#about'];
     if(known.includes(hash)) requestAnimationFrame(()=>{if(hash==='#home')window.scrollTo({top:0,behavior:initial||wasLesson?'instant':'smooth'});else $(hash)?.scrollIntoView({behavior:initial||wasLesson?'instant':'smooth',block:'start'});});
